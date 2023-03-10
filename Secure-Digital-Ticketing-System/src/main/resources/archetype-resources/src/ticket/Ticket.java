@@ -1,14 +1,14 @@
 @Entity
-public class Event {
+public class Ticket {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    @ManyToOne
+    private Event event;
 
-    private LocalDateTime startDateTime;
-
-    private LocalDateTime endDateTime;
+    @ManyToOne
+    private Customer customer;
 
     // getters and setters
 }
