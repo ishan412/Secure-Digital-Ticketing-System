@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.example.securedigitalticketingsystemmain.core.entity.EventEntity">
+        <table name="event" schema="public" catalog="postgres"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="name">
+                <column name="name" nullable="false" length="30"/>
+            </basic>
+            <basic name="startdatetime">
+                <column name="startdatetime" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="enddatetime">
+                <column name="enddatetime" nullable="false" precision="-1"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
