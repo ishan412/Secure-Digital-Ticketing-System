@@ -22,9 +22,15 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
+import java.util.Base64;
+
 @RestController
 public class CustomerController {
 
+    private static final String AES_SECRET_KEY = "Ticket@Team15"; // AES秘钥，可以自定义
     @Autowired
     CustomerRepository customerRepository;
 
@@ -86,18 +92,18 @@ public class CustomerController {
      * @return
      */
     @GetMapping("/getqr")
-    public SaResult getQR(String txt) throws Exception {
-        //文本转utf8避免乱码
-        byte[] utf8Bytes = txt.getBytes(StandardCharsets.UTF_8);
-        String utf8String = new String(utf8Bytes, StandardCharsets.UTF_8);
-        //二维码尺寸
+    public SaResult getEncryptedQR(String txt) throws Exception {
+        // AES加密明文文本
+        String encryptedTxt = encryptAES(txt);
+
+        // 二维码尺寸
         int width = 350;
         int height = 350;
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-        BitMatrix bitMatrix = qrCodeWriter.encode(utf8String, BarcodeFormat.QR_CODE, width, height, hints);
+        BitMatrix bitMatrix = qrCodeWriter.encode(encryptedTxt, BarcodeFormat.QR_CODE, width, height, hints);
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -110,6 +116,21 @@ public class CustomerController {
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
         String base64Encoded = Base64.getEncoder().encodeToString(imageBytes);
         return SaResult.ok().setData(base64Encoded);
+    }
+
+    /**
+     * 使用AES算法加密明文文本
+     *
+     * @param plainText 明文文本
+     * @return 加密后的字符串
+     */
+    private String encryptAES(String plainText) throws Exception {
+        byte[] keyBytes = AES_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
+        Key key = new SecretKeySpec(keyBytes, "AES");
+        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encryptedBytes = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
+        return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
 }
