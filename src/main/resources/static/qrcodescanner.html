@@ -28,29 +28,43 @@
     </style>
   </head>
   <body>
-    <h1>QR Code Scanner for NUSU Events</h1>
-    <div id="video-container">
-      <video id="preview"></video>
-    </div>
-    <button onclick="startScanner()">Scan QR Code</button>
-    <div id="scan-result"></div>
-    <script>
-      function startScanner() {
-        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-        scanner.addListener('scan', function (content) {
-          document.getElementById('scan-result').innerHTML = content;
-          scanner.stop();
-        });
-        Instascan.Camera.getCameras().then(function (cameras) {
-          if (cameras.length > 0) {
-            scanner.start(cameras[0]);
-          } else {
-            alert('No cameras found.');
-          }
-        }).catch(function (error) {
-          console.error(error);
-        });
+  <h1>QR Code Scanner for NUSU Events</h1>
+  <div id="video-container">
+    <video id="preview"></video>
+  </div>
+  <button onclick="startScanner()">Scan QR Code</button>
+  <div id="scan-result"></div>
+  <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+  <script>
+    function startScanner() {
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        document.getElementById('scan-result').innerHTML = content;
+        scanner.stop();
+        sendScanResult(content); // 发送扫描结果到后台 send to back-end
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          alert('No cameras found.');
+        }
+      }).catch(function (error) {
+        console.error(error);
+      });
+    }
+
+    function sendScanResult(result) {
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(xhr.responseText);
+        }
       }
-    </script>
+      xhr.open("POST", "/scan-result", true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({ result: result }));
+    }
+  </script>
   </body>
 </html>
