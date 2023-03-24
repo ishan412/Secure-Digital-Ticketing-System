@@ -21,4 +21,9 @@ public class CustomerEntity {
     @Basic
     @Column(name = "password", nullable = true, length = 255)
     private String password;
+
+    @Transient
+    private String starttime;
+    @Transient
+    private String endtime;
 }

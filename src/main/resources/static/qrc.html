@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解析二维码</title>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+<h1>upload QR code</h1>
+<input type="file" id="file-input">
+<button onclick="upload()">upload</button>
+
+
+<script>
+    function upload() {
+        let fileInput = document.getElementById("file-input");
+        let file = fileInput.files[0];
+        let formData = new FormData();
+        formData.append("qrc", file);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/scan");  // 上传文件的后端API接口
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);//上传成功
+            } else {
+                console.log("上传失败");
+            }
+        }
+        xhr.send(formData); //发送数据
+    }
+</script>
+</body>
+</html>
