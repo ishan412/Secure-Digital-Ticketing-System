@@ -11,7 +11,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" th:href="@{/lib/layui-v2.6.3/css/layui.css}" media="all">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" th:href="@{/lib/layui-v2.6.3/css/layui.css}"
+          media="all">
     <!--    <link rel="stylesheet" href="/static/build/layui.css" media="all">-->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -56,6 +57,7 @@
             .login-main .login-top {width:360px !important;}
             .login-main .login-bottom {width:360px !important;}
         }
+
     </style>
 </head>
 <body>
@@ -70,27 +72,30 @@
             <div class="center">
                 <div class="item">
                     <span class="icon icon-2"></span>
-                    <input type="text" name="loginName" lay-verify="required"  placeholder="Please Enter Username" maxlength="24"/>
+                    <input type="text" name="loginName" lay-verify="required" placeholder="Please Enter Username"
+                           maxlength="24"/>
                 </div>
 
                 <div class="item">
                     <span class="icon icon-1"></span>
-                    <input type="email" name="email" lay-verify="required"  placeholder="Please Enter Your Email" maxlength="20">
+                    <input type="email" name="email" lay-verify="required" placeholder="Please Enter Your Email"
+                           maxlength="20">
                 </div>
 
                 <div class="item">
                     <span class="icon icon-2"></span>
-                    <input type="text" name="eventName" lay-verify="required"  placeholder="Please Enter Event Name" maxlength="24"/>
+                    <input type="text" name="eventName" lay-verify="required" placeholder="Please Enter Event Name"
+                           maxlength="24"/>
                 </div>
 
                 <div class="item">
                     <span class="icon icon-2"></span>
-                    <input type="date" name="starttime" lay-verify="required"  maxlength="24"/>
+                    <input type="date" name="starttime" lay-verify="required" maxlength="24"/>
                 </div>
 
                 <div class="item">
                     <span class="icon icon-2"></span>
-                    <input type="date" name="endtime" lay-verify="required"   maxlength="24"/>
+                    <input type="date" name="endtime" lay-verify="required" maxlength="24"/>
                 </div>
 
 
@@ -122,7 +127,9 @@
                     <button class="login-btn" lay-submit="" lay-filter="login">Register Account</button>
                 </div>
                 <div>
-                    <button id="TencentCaptcha" data-appid="1253632833" data-cbfn="callback" class="layui-btn layui-block" >Register Account</button>
+                    <button id="TencentCaptcha" data-appid="1253632833" data-cbfn="callback"
+                            class="layui-btn layui-block">Register Account
+                    </button>
                 </div>
             </div>
         </form>
@@ -201,6 +208,7 @@
             return false;
         });
     });
+
 </script>
 <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 <script>
@@ -211,6 +219,7 @@
 
         }
     }
+
 </script>
 </body>
 </html>

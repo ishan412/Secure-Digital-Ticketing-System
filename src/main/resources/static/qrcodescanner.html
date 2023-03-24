@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>QR Code Scanner for NUSU Events</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,17 +25,18 @@
       #scan-result {
         margin-top: 20px;
       }
+
     </style>
-  </head>
-  <body>
-  <h1>QR Code Scanner for NUSU Events</h1>
-  <div id="video-container">
+</head>
+<body>
+<h1>QR Code Scanner for NUSU Events</h1>
+<div id="video-container">
     <video id="preview"></video>
-  </div>
-  <button onclick="startScanner()">Scan QR Code</button>
-  <div id="scan-result"></div>
-  <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-  <script>
+</div>
+<button onclick="startScanner()">Scan QR Code</button>
+<div id="scan-result"></div>
+<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<script>
     function startScanner() {
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
@@ -65,6 +66,7 @@
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(JSON.stringify({ result: result }));
     }
-  </script>
-  </body>
+
+</script>
+</body>
 </html>

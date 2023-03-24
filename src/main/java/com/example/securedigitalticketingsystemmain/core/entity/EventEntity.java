@@ -22,4 +22,4 @@ public class EventEntity {
     @Basic
     @Column(name = "enddatetime", nullable = true)
     private Timestamp enddatetime;
-    }
+}

@@ -4,7 +4,7 @@
  Source Server         : postgres
  Source Server Type    : PostgreSQL
  Source Server Version : 140007
- Source Host           : 117.50.174.154:5432
+ Source Host           : localhost:5432
  Source Catalog        : postgres
  Source Schema         : public
 

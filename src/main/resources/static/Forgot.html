@@ -11,7 +11,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" th:href="@{/lib/layui-v2.6.3/css/layui.css}" media="all">
+    <link rel="stylesheet" href="../static/lib/layui-v2.6.3/css/layui.css" th:href="@{/lib/layui-v2.6.3/css/layui.css}"
+          media="all">
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -55,6 +56,7 @@
             .login-main .login-top {width:360px !important;}
             .login-main .login-bottom {width:360px !important;}
         }
+
     </style>
 </head>
 <body>
@@ -69,28 +71,35 @@
             <div class="center">
                 <div class="item" id="email">
                     <span class="icon icon-2"></span>
-                    <input type="email" name="email" lay-verify="required"  placeholder="Please Enter Email" maxlength="24"/>
+                    <input type="email" name="email" lay-verify="required" placeholder="Please Enter Email"
+                           maxlength="24"/>
                 </div>
                 <div class="item" id="verifyCode" style="display: none">
                     <span class="icon icon-2"></span>
-                    <input type="text"  name="verifyCode"  placeholder="Please Enter The Verification Code" maxlength="24"/>
+                    <input type="text" name="verifyCode" placeholder="Please Enter The Verification Code"
+                           maxlength="24"/>
                 </div>
 
                 <div class="item" id="newPassword" style="display: none">
                     <span class="icon icon-2"></span>
-                    <input type="password"  name="newPassword"  placeholder="Please Enter Password" maxlength="24"/>
+                    <input type="password" name="newPassword" placeholder="Please Enter Password" maxlength="24"/>
                 </div>
                 <div class="item" id="confirmNewPassword" style="display: none">
                     <span class="icon icon-2"></span>
-                    <input type="password"  name="confirmNewPassword"  placeholder="Please Enter Password" maxlength="24"/>
+                    <input type="password" name="confirmNewPassword" placeholder="Please Enter Password"
+                           maxlength="24"/>
                 </div>
             </div>
 
 
             <div class="layui-form-item" style="text-align:center; width:100%;height:100%;margin:0px;">
                 <button class="login-btn" id="getBack" lay-submit="" lay-filter="forget">Password Reset</button>
-                <button class="login-btn" id="submitCode" lay-submit="" style="display: none" lay-filter="submitCode">Confirm</button>
-                <button class="login-btn" id="password" lay-submit="" style="display: none" lay-filter="password">Confirm</button>
+                <button class="login-btn" id="submitCode" lay-submit="" style="display: none" lay-filter="submitCode">
+                    Confirm
+                </button>
+                <button class="login-btn" id="password" lay-submit="" style="display: none" lay-filter="password">
+                    Confirm
+                </button>
             </div>
         </form>
     </div>
@@ -200,6 +209,7 @@
             return false;
         });
     });
+
 </script>
 </body>
 </html>
