@@ -54,9 +54,9 @@ public class CustomerController {
     public SaResult login(String name, String pwd) {
         CustomerEntity one = customerRepository.one(name, pwd);
         if (one == null) {
-            return SaResult.error("账号或密码错误");
+            return SaResult.error("Invalid username or password!");
         }
-        return SaResult.ok("登录成功");
+        return SaResult.ok("Login Success");
     }
 
     /**
@@ -71,18 +71,18 @@ public class CustomerController {
     @GetMapping("/register")
     public SaResult register(HttpServletResponse response, String name, String pwd1, String pwd2, String email, String starttime, String endtime) throws Exception {
         if (pwd1 == null || pwd2 == null) {
-            return SaResult.error("请填写密码");
+            return SaResult.error("Please fill in the password");
         }
         if (!pwd1.equals(pwd2)) {
-            return SaResult.error("两次密码不一样");
+            return SaResult.error("Two passwords are inconsistent");
         }
 
         if (name == null || email == null) {
-            return SaResult.error("请填完表端");
+            return SaResult.error("Please fill in the end of the form");
         }
         CustomerEntity one = customerRepository.one(name);
         if (one != null) {
-            return SaResult.error("用户名已存在");
+            return SaResult.error("Username already exists");
         }
         Random random = new Random();
         CustomerEntity customerEntity = new CustomerEntity();

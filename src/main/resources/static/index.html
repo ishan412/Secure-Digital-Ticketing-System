@@ -337,7 +337,7 @@
             data: par,
             success: function (res) {
                 if (res.code == 200) {
-                    layer.msg("注册成功");
+                    layer.msg("Registration Success");
                     //文件下载
                     let base64String = JSON.stringify(res.data).replace("\"", "").replace("\"", "")
                     let blob = base64ToBlob(base64String);
